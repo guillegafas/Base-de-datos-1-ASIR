@@ -1,0 +1,68 @@
+USE concesionario;
+
+CREATE TABLE agencia (
+Codagencia INT AUTO_INCREMENT,
+nombre VARCHAR (50) NOT NULL,
+direcion VARCHAR (50) NOT NULL,
+PRIMARY KEY (CodAGENCIA)
+) ENGINE InnoDB;
+agencia
+
+CREATE TABLE Garaje (
+Codgaraje INT AUTO_INCREMENT,
+Dirección_garaje VARCHAR (50) NOT NULL,
+Plaza INT NOT NULL,
+PLANTA INT NOT NULL,
+PRIMARY KEY (Codgaraje)
+) ENGINE InnoDB;
+
+CREATE TABLE modelo (
+Codmodelo INT AUTO_INCREMENT,
+altura INT NOT NULL,
+Peso INT NOT NULL,
+potencia INT NOT NULL,
+PRIMARY KEY (Codmodelo)
+) ENGINE InnoDB;
+
+CREATE TABLE cliente (
+Codcliente INT AUTO_INCREMENT,
+Nombre VARCHAR (50) NOT NULL,
+Apellido VARCHAR (50) NOT NULL,
+DNI VARCHAR (9) NOT NULL,
+cliente_Codcliente INT NOT NULL,
+PRIMARY KEY (Codcliente),
+FOREIGN KEY (cliente_Codcliente) REFERENCES cliente (Codcliente)
+) ENGINE InnoDB; 
+
+CREATE TABLE reserva (
+Codreserva INT AUTO_INCREMENT,
+fecha_inicio DATE NOT NULL,
+fecha_FINAL DATE NOT NULL,
+DNI VARCHAR (9) NOT NULL,
+Codcliente INT NOT NULL,
+Codagencia INT NOT NULL,
+PRIMARY KEY (Codreserva),
+FOREIGN KEY (Codcliente) REFERENCES cliente (Codcliente),
+FOREIGN KEY (Codagencia) REFERENCES agencia (Codagencia)
+) ENGINE InnoDB; 
+
+CREATE TABLE coche (
+Codcoche INT AUTO_INCREMENT,
+matricula VARCHAR (20) NOT NULL,
+descripcion VARCHAR (30) NOT NULL,
+Codgaraje INT NOT NULL,
+Codmodelo INT NOT NULL,
+Codagencia INT NOT NULL,
+PRIMARY KEY (Codcoche),
+FOREIGN KEY (Codmodelo) REFERENCES modelo (Codmodelo),
+FOREIGN KEY (Codagencia) REFERENCES agencia (Codagencia),
+FOREIGN KEY (Codgaraje) REFERENCES garaje (Codgaraje)
+) ENGINE InnoDB; 
+
+CREATE TABLE intermedia (
+Codcoche INT NOT NULL,
+Codreserva INT NOT NULL,
+Entrega INT NOT NULL,
+gasolina INT NOT NULL,
+PRIMARY KEY (Codcoche, Codreserva)
+) ENGINE InnoDB; 
