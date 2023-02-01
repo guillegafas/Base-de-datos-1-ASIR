@@ -1,0 +1,30 @@
+1.	Añadir un campo nuevo llamado formación a la tabla médicos;
+ALTER TABLE medicos
+ADD formacion VARCHAR(50);
+
+2.	Añadir un campo nuevo que no admita nulos llamada publicaciones.
+Añadir un médico 
+ Te dejará, pero los anteriores médicos no son obligatorios.
+ALTER TABLE medicos
+ADD publicaciones VARCHAR(100) NOT NULL;
+
+3.	Modificar el campo cargo de 20 caracteres a 50 caracteres
+ALTER TABLE medicos
+MODIFY COLUMN CARGO varchar(50);
+
+4.	Añadir un campo radiografiaras después de diagnostico-after.
+ALTER TABLE INGRESOS
+ADD RADIOGRAFIAS VARCHAR (50) AFTER DIAGNOSTICO;
+5.	Borrar la restricción de integridad entre pacientes e ingresos
+ALTER TABLE Ingresos DROP FOREIGN KEY FK_PACIENTE;
+
+6.	Añadir una restricción para que la especialidad del médico sea :
+Especialidad ENUM ('Pediatría','Intensivista','Cardiólogo','Trauma')
+ALTER TABLE Medicos
+MODIFY COLUMN Especialidad ENUM ('Pediatría','Intensivista','Cardiólogo','Trauma');
+
+7.	Insertar un medico de la especialidad de pediatría ¿qué sucede?
+Me ha dejado (creo que esto no debería pasar)
+
+8.	Borrar la tabla de ingresos ¿ Qué sucede?
+Me ha dejado (creo que no debería)
