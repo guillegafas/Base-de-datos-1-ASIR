@@ -1,0 +1,19 @@
+Mostrar la descripción de las tabla FAMILIA_PROFESIONAL y ciclos
+SELECT * FROM ies_elena.ciclosfp;
+SELECT * FROM ies_elena.familiaprofesional;
+
+3. Mostrar las diferentes familias profesionales
+SELECT COD_FAMILIA, DESCRIPCION FROM ies_elena.familiaprofesional;
+
+4. Mostar los ciclos que pertenecen a la familia de Informática
+SELECT DENOMINACION FROM CICLOSFP, FAMILIAPROFESIONAL
+WHERE ciclosfp.cod_familia = '0001' and
+CICLOSFP.COD_FAMILIA = FAMILIAPROFESIONAL.COD_FAMILIA;
+
+
+5. Mostrar los módulos de el ciclo se asir y daw
+SELECT DESCRIPCION FROM MODULOS M, CICLOSFP C, CICLOSFPMODULOS I
+WHERE I.COD_CICLO = C.COD_CICLO
+AND M.COD_MODULO = I.COD_MODULO
+AND (C.COD_CICLO = '0001' OR C.COD_CICLO = '0002');
+;

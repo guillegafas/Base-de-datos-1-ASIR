@@ -1,0 +1,71 @@
+use clinica2021;
+1/
+SELECT * FROM pacientes;
+SELECT * FROM medicos;
+SELECT * FROM pacientes;
+
+2/
+SELECT * FROM pacientes
+where pacientes.localidad='Leganes';
+
+3/
+SELECT * FROM pacientes
+where pacientes.edad>18;
+
+4/ 
+SELECT * FROM pacientes
+where pacientes.edad>18 and pacientes.Localidad='Leganes';
+
+5/
+
+6/
+SELECT * FROM pacientes
+where pacientes.edad<7;
+
+7/
+SELECT coste FROM ingresos
+where diagnostico='Microtraumatismos';
+
+8/
+SELECT coste FROM ingresos
+where diagnostico='ROTURA DE MENISCO' or diagnostico='Hipertesion';
+
+
+9/
+SELECT * FROM medicos
+where ESPECIALIDAD='PediatrÃ­a' or ESPECIALIDAD='CardiÃ³logo';
+
+
+10/
+
+SELECT localidad from pacientes, ingresos
+where diagnostico='FIEBRE ALTA' and pacientes.cod_paciente = ingresos.Cod_paciente;
+
+11/
+SELECT * from pacientes, ingresos, medicos
+where pacientes.COD_PACIENTE = ingresos.cod_paciente
+and ingresos.N_colegiado = medicos.N_colegiado
+and pacientes.nombre='Alberto';
+
+12/
+SELECT provincia from pacientes, ingresos
+where pacientes.COD_PACIENTE = ingresos.cod_paciente
+and ingresos.diagnostico='Microtraumatismos' or ingresos.diagnostico='cardiomiopatÃ­a'
+
+13/
+SELECT nombre from pacientes, ingresos
+where pacientes.COD_PACIENTE = ingresos.cod_paciente
+and ingresos.fecha_ingreso>'2020-11-19' ;
+
+14/
+SELECT fecha_ingreso from ingresos
+where ingresos.diagnostico='FIEBRE ALTA' or ingresos.diagnostico='Covid' ;
+
+
+15/
+SELECT medicos.nombre, medicos.apellido, medicos.cargo from medicos, ingresos, pacientes
+where pacientes.COD_PACIENTE = ingresos.cod_paciente
+and ingresos.N_colegiado = medicos.N_colegiado
+and pacientes.localidad='Toledo' ;
+
+
