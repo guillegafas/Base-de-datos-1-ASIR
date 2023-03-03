@@ -1,5 +1,5 @@
 
-
+USE EXAMEN;
 CREATE TABLE IES (
 CODCENTRO varchar(3),
 NOMBRE VARCHAR (10) NOT NULL,
@@ -25,20 +25,49 @@ PRIMARY KEY (CODCICLO)
 );
 
 CREATE TABLE IES_CICLOS (
-CODCENTRO varchar(3),
+CODCENTRO VARCHAR(3),
 CODCICLO VARCHAR (8),
 TURNOS VARCHAR(18),
 PRIMARY KEY (CODCENTRO, CODCICLO),
 FOREIGN KEY (CODCENTRO) REFERENCES IES (CODCENTRO),
-FOREIGN KEY (CODCICLO) REFERENCES CICLO (CODCICLO)
+FOREIGN KEY (CODCICLO) REFERENCES CICLOS (CODCICLO)
 ) ENGINE InnoDB;
 
 CREATE TABLE CICLOS_ALUMNO (
-CODALUMNO varchar(3),
+N_EXP varchar(3),
 CODCICLO VARCHAR (8),
 AÑO date,
 NOTA_FINAL INT,
-primary key (AÑO, CODCICLO, CODALUMNO),
-FOREIGN KEY (CODALUMNO) REFERENCES ALUMNO (CODCALUMNO),
-FOREIGN KEY (CODCICLO) REFERENCES CICLO (CODCICLO)
+primary key (AÑO, CODCICLO, N_EXP),
+FOREIGN KEY (N_EXP) REFERENCES ALUMNO (N_EXP),
+FOREIGN KEY (CODCICLO) REFERENCES CICLOS (CODCICLO)
 ) ENGINE InnoDB;
+
+CREATE TABLE IES_ALUMNO (
+N_EXP varchar(8),
+CODCENTRO VARCHAR (3),
+primary key (CODCENTRO, N_EXP),
+FOREIGN KEY (N_EXP) REFERENCES ALUMNO (N_EXP),
+FOREIGN KEY (CODCENTRO) REFERENCES IES (CODCENTRO)
+) ENGINE InnoDB;
+
+
+
+INSERT INTO ALUMNO VALUES ('11111111', 'Guillermo', 'Muñoz', 'Inspector duhdsfhkdsfn'),
+('22222222', 'Juanjo', 'Sanchez', 'bvciashfiowdas'),
+('33333333', 'Jun', 'Lopez', 'hfsdfjosjdfiof'),
+('44444444', 'Alberto', 'Finz', 'Iweruweurwoejrowie'),
+('55555555', 'Alex', 'Camavinga', 'asdbfuhasgdfug');
+
+INSERT INTO IES VALUES ('001', 'Arboleda', 'foihdashfidas', 'Alcorcon'),
+('002', 'Cañaveral', 'treyo', 'Alcorcon'),
+('003', 'Trocolo', 'gfwretwtre', 'Leganes'),
+('004', 'Verstapen', 'fkjrhwe', 'Fuenlabrada'),
+('005', 'Alonso', 'hfwejirhf', 'Alcorcon');
+
+INSERT INTO CICLOS VALUES ('11111111', 'ASIR', '1', '100'),
+('22222222', 'DAM', '1', '100'),
+('33333333', 'RAW', '1', '100'),
+('44444444', 'IYS', '2', '50'),
+('55555555', 'DAW', '2', '50');
+

@@ -20,7 +20,7 @@ AND (C.denominacion = 'ASIR' OR C.DENOMINACION = 'DAW');
 
 6. Mostrar los ciclos con más de 1000 horas
 SELECT * FROM CICLOSFP
-WHERE DURACION > '1000';
+WHERE DURACION > 1000;
 
 7. Mostrar los ciclos con más de 1000 horas pertenecientes a informática
 
@@ -42,7 +42,15 @@ FAMILIAS PROFESIONALES QUE NO TIENEN CICLOS
 SELECT DESCRIPCION FROM FAMILIAPROFESIONAL
 WHERE COD_FAMILIA NOT IN (SELECT COD_FAMILIA FROM CICLOSFP);
 
+10. Mostrar los IES de Alcorcón y Móstoles con ciclos de tarde
+SELECT NOMBRE FROM IES 
+WHERE LOCALIDAD = 'Alcorcón' or LOCALIDAD = 'Móstoles';
+
+11. Mostrar los IES de Alcorcón y Móstoles con ciclos de tarde CON CICLOS DE ASIR
 
 
+/*13. Mostrar las empresas con sede en Madrid o con un número de trabajadores menor a 50.*/
+SELECT NOMBRE FROM EMPRESAFCT
+WHERE SEDE = 'Madrid' AND N_TRABAJADOR < 500;
 
 

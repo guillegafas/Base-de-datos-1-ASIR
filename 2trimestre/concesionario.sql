@@ -1,0 +1,18 @@
+USE concesionario;
+
+CREATE TABLE Garaje (
+Codgaraje INT AUTO_INCREMENT,
+Dirección_garaje VARCHAR (50) NOT NULL,
+Plaza INT NOT NULL,
+PLANTA INT NOT NULL,
+PRIMARY KEY (Codgaraje)
+) ENGINE InnoDB;
+agencia
+
+CREATE TABLE Garaje (
+Codgaraje INT AUTO_INCREMENT,
+Dirección_garaje VARCHAR (50) NOT NULL,
+Plaza INT NOT NULL,
+PLANTA INT NOT NULL,
+PRIMARY KEY (Codgaraje)
+) ENGINE InnoDB;
