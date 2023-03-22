@@ -103,6 +103,7 @@ rollback; /*para desahcer el cambio antes de comitear porque sino la lias*/
 
 /*Insertar a un empleado de apellido ‘SAAVEDRA’ con número 2000. 
 La fecha de alta será la actual, el SALARIO será el mismo salario de ‘SALA’ más el 20 por 100 y el resto de datos serán los mismos que los datos de ‘SALA’.*/
+
 /*No me deja meter 2000 porque es un tinyint asique vamos a modificarlo, a parte otra cuestion distinta:
 si metemos un numero a mano sin tener en cuenta el auto increment, cuando metamos otro empleado su numero será a partir del ultimo que hemos metido y no seguira con 
 la cuenta que llevaba*/
@@ -111,4 +112,43 @@ alter table EMPLE MODIFY EMP_NO int Not Null;
 alter table EMPLE MODIFY DIR int Not Null;
 INSERT INTO EMPLE VALUES (DEPT_NO,'SAAVEDRA','EMPLEADO',NULL, current_date(),104000,NULL,30);
 
+/*Modificar el número de departamento de ‘SAAVEDRA’. El nuevo departamento será el departamento donde hay más empleados cuyo oficio sea ‘EMPLEADO’.*/
 
+UPDATE EMPLE SET DEPT_NO = (
+SELECT DNOMBRE, E.DEPT_NO FROM DEPART D, EMPLE E WHERE  D.DEPT_NO = E.DEPT_NO AND OFICIO LIKE 'EMP%' GROUP BY E.DEPT_NO HAVING MAX( (SELECT COUNT(*)  FROM EMPLE))
+) WHERE APELLIDO = 'SAAVEDRA';
+
+SELECT DNOMBRE, E.DEPT_NO FROM DEPART D, EMPLE E WHERE  D.DEPT_NO = E.DEPT_NO AND OFICIO LIKE 'EMP%' GROUP BY E.DEPT_NO HAVING MAX( (SELECT COUNT(*)  FROM EMPLE));
+SELECT * FROM EMPLE;
+SELECT * FROM DEPART;
+
+/*Borrar todos los departamentos de la tabla DEPART para los cuales no existan empleados en EMPLE.*/
+DELETE FROM DEPART WHERE DEPT_NO NOT IN (SELECT DEPT_NO FROM EMPLE);
+
+/*Muestre los diferentes oficios*/
+SELECT DISTINCT OFICIO FROM EMPLE;
+
+/*Mostrar los datos de los empleados que tiene oficio (analista, vendedor, o director)*/
+SELECT * FROM EMPLE WHERE (OFICIO LIKE 'ANAL%' OR OFICIO LIKE 'VEN%') OR OFICIO LIKE 'DIREC%';
+
+/*Mostrar todos los datos de los empleados que no son analistas ni vendedores;*/
+SELECT * FROM EMPLE WHERE OFICIO NOT IN (SELECT OFICIO FROM EMPLE WHERE OFICIO LIKE 'ANAL%' OR OFICIO LIKE 'VEN%');
+
+/*Obtener el APELLIDO, SALARIO  Y DEPT_NO  de los empleados  cuyo salario sea mayor de 200 en los departamentos  10 o 20;*/
+SELECT APELLIDO, SALARIO, DEPT_NO FROM EMPLE WHERE SALARIO > 200 AND (DEPT_NO = 20 AND DEPT_NO = 10);
+
+/*Seleccionar el apellido el oficio de los empleados  cuyo apellido empiece por A y el oficio contenga una E.*/
+
+/*Mostrar los datos de los empleados que no tienen comisión (si no tenemos comisión seleccionar otro campo)*/
+
+/*Mostrar los datos de los empleados que están trabajando en la localidad de Madrid.*/
+
+/*Obtener todos los campos de la tabla emple*/
+
+/*Obtener todos los campos de la tabla depart*/
+
+/*Mostrar los ANALISTAS, sacando el apellido, el departamento en que trabajan y la localidad del departamento.*/
+
+/*Listar los datos de los empleados que trabajan en Madrid o en Barcelona*/
+
+/*Listar los apellidos, oficio y localidad de los departamentos donde trabajan Analistas.*/
