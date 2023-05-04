@@ -1,0 +1,39 @@
+
+/*Escribe una función que recibe una cadena de caracteres y devuelve un mensaje de saludo*/
+
+DELIMITER ||
+CREATE  FUNCTION saludar (nombre VARCHAR(15)) 
+
+RETURNS VARCHAR(25)
+BEGIN
+	DECLARE saludo VARCHAR(25) DEFAULT ' ';
+	SET saludo = CONCAT('¡Hola ', nombre);
+	RETURN saludo;
+END;
+DELIMITER;
+
+
+/*Escribir una función que devuelva el coste medio de los pacientes ingresado en un año, que se pasa como parámetro*/
+
+CREATE DEFINER 'root@localhost' FUNCTION 'COSTE_MEDIO' (IN FECHA_INGRESO_CLIENTE YEAR )
+RETURNS FLOAT
+BEGIN 
+DECLARE COSTE_MEDIO FLOAT DEFAULT 0;
+SELECT AVG(COSTE) INTO COSTE_MEDIO FROM INGRESOS WHERE year(FECHA_INGRESO) = (FECHA_INGRESO_CLIENTE);
+RETURN COSTE_MEDIO;
+END;
+
+
+/* Diseñar una función que calcule los días que pasa un paciente en el hospital*/
+
+CREATE DEFINER 'root@localhost' FUNCTION 'DÍAS_HOSPITALIZADO' (IN COD_INGRESO INT)
+RETURNS FLOAT
+BEGIN
+DECLARE N_INGRESO INT DEFAULT 0;
+DECLARE N_DIAS FLOAT DEFAULT 0;
+DECLARE INGRESO DATE;
+DECLARE ALTA DATE; 
+SELECT FECHA_INGRESO, FECHA_ALTA INTO INGRESO, ALTA FROM INGRESOS WHERE COD_INGRESO = N_INGRESO;
+SET N_DIAS = datediff(INGRESO, ALTA);
+RETURNS N_DIAS;
+END
