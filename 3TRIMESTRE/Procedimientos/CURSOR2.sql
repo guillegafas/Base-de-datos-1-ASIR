@@ -39,6 +39,7 @@ DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
 	CLOSE CUR1;
 END ||
 
+
 DELIMITER ;
 
 
@@ -49,3 +50,5 @@ DELIMITER ;
 
 
 /*Escribir un procedimiento que modifique la localidad de un departamento. El procedimiento recibirá como parámetros el número del departamento y la localidad nueva.*/
+
+/*cREA UN PROCEDIMIENTO QUE ME META UN CODIGO DE EMPLEADO SEGUN EL DEPARTAMENTO QUE ES A LA NUEVA TABLA*/
